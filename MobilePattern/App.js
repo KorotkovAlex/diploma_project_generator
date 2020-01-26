@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import AppContainer from './src/screens/router';
+import AppContainer from './src/screens/router.tsx';
 
 const App = () => {
   return <AppContainer />;
