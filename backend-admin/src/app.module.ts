@@ -8,14 +8,14 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { AuthModule } from './auth/auth.module';
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
+import { ProjectsModule } from './projects/projects.module';
+import { Project } from './projects/project.entity';
 
 function DatabaseOrmModule(): DynamicModule {
   const configService = new ConfigService();
   const config = configService.getConfig();
   const isProd = configService.isProd();
-  const entities = [User];
+  const entities = [User, Project];
 
   return TypeOrmModule.forRoot({
     type: 'postgres',
@@ -36,6 +36,7 @@ function DatabaseOrmModule(): DynamicModule {
     CacheModule.register(),
     DatabaseOrmModule(),
     UsersModule,
+    ProjectsModule,
     ConfigModule,
     AuthModule,
   ],
