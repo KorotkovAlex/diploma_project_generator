@@ -9,10 +9,14 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './view/auth/auth.module';
 import { AdminModule } from './view/admin/admin.module';
 import { FormsComponent } from './view/forms/forms.component';
+import { AuthService } from './view/auth/auth.service';
+import { AuthGuardService } from './view/auth/auth-guard.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 @NgModule({
   declarations: [AppComponent, FormsComponent],
   imports: [BrowserModule, AppRoutingModule, AuthModule, AdminModule, FormsModule, NgbModule],
-  providers: [],
+  providers: [AuthService, AuthGuardService, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
