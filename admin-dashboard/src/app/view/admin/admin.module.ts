@@ -4,9 +4,10 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { NewProjectComponent } from './new-project/new-project.component';
 
 @NgModule({
-  declarations: [AdminComponent, SidebarComponent, ProjectsComponent, ProjectDetailsComponent],
+  declarations: [AdminComponent, SidebarComponent, ProjectsComponent, ProjectDetailsComponent, NewProjectComponent],
   imports: [AdminRoutingModule],
   providers: [],
   entryComponents: []
