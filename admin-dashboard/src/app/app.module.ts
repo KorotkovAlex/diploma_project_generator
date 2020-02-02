@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './view/auth/auth.module';
-import { AdminModule } from './view/admin/admin.module';
 import { FormsComponent } from './view/forms/forms.component';
 import { AuthService } from './view/auth/auth.service';
 import { AuthGuardService } from './view/auth/auth-guard.service';
@@ -16,7 +15,7 @@ import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [AppComponent, FormsComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, AdminModule, FormsModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, AuthModule, FormsModule, NgbModule],
   providers: [AuthService, AuthGuardService, JwtHelperService, ApiService],
   bootstrap: [AppComponent]
 })

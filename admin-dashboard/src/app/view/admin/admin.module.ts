@@ -1,12 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 @NgModule({
-  declarations: [AdminComponent, SidebarComponent],
-  imports: [BrowserModule, AdminRoutingModule],
+  declarations: [AdminComponent, SidebarComponent, ProjectsComponent, ProjectDetailsComponent],
+  imports: [AdminRoutingModule],
   providers: [],
   entryComponents: []
 })
