@@ -1,1 +1,29 @@
-<p>new-project works!</p>
+<div>
+  <form [formGroup]="newProjectForm" (ngSubmit)="onSubmit()" class="forms-sample">
+    <div class="form-group">
+      <label for="name">name address</label>
+      <input formControlName="name" name="name" type="name" class="form-control" id="name" placeholder="Enter name" />
+    </div>
+    <div class="form-group">
+      <label for="version">version</label>
+      <input
+        formControlName="version"
+        name="version"
+        type="version"
+        class="form-control"
+        id="version"
+        placeholder="version"
+      />
+    </div>
+    <div class="form-group">
+      <label for="typeMenu">typeMenu</label>
+      <select formControlName="typeMenu" class="form-control form-control-lg" id="typeMenu">
+        <option>Side Menu</option>
+        <option>Bottom Menu</option>
+      </select>
+    </div>
+
+    <button [disabled]="newProjectForm.invalid" type="submit" class="btn btn-success mr-2">Submit</button>
+    <button class="btn btn-light">Cancel</button>
+  </form>
+</div>
