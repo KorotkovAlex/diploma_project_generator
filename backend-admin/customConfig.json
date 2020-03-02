@@ -1,0 +1,20 @@
+// {
+//   "appName": "AppName",
+//   "versionCode": "1.0",
+//   "icon": {
+//     "mainIcon": "icon-link",
+//     "secondIcon": "icon-link2"
+//   }
+// }
+
+{
+  "theme": {
+    "primaryColor": "#FAF",
+    "secondColor": "#EEE555"
+  },
+  "screens": [
+    { "name": "Contacts" },
+    { "name": "About" },
+    { "name": "Services" }
+  ]
+}

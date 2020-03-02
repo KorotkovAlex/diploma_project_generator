@@ -7,8 +7,6 @@ import { Project } from './project.entity';
 
 @Injectable()
 export class ProjectsService extends TypeOrmCrudService<Project> {
-  repository = null;
-
   constructor(
     @InjectRepository(Project)
     private readonly projectRepository: Repository<Project>,

@@ -4,8 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BeforeInsert,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Project } from '../projects/project.entity';
 
 @Entity('users')
 export class User {
@@ -53,4 +56,11 @@ export class User {
 
     return user;
   }
+
+  @ManyToMany(
+    type => Project,
+    projects => projects.users,
+  )
+  @JoinTable({ name: 'projects_users' })
+  projects: Project[];
 }

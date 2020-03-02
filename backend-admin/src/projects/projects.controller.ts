@@ -1,11 +1,19 @@
 import { Controller } from '@nestjs/common';
-import { Crud } from '@nestjsx/crud';
+import { Crud, CrudAuth } from '@nestjsx/crud';
 import { Project } from './project.entity';
 import { ProjectsService } from './projects.service';
+import { User } from '../users/user.entity';
 
 @Crud({
   model: {
     type: Project,
+  },
+  query: {
+    join: {
+      users: {
+        eager: true,
+      },
+    },
   },
 })
 @Controller('projects')
