@@ -1,1 +1,9 @@
-<p>projects works!</p>
+<div>
+  <ul>
+    <div ng-click="onClick(project)" *ngFor="let project of projects; let i = index">
+      <a routerLink="/admin/projects/{{ project.id }}">
+        {{ project.name }}
+      </a>
+    </div>
+  </ul>
+</div>

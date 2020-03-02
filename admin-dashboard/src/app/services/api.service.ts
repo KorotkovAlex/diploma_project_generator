@@ -10,7 +10,7 @@ export class ApiService {
 
   constructor(private _httpClient: HttpClient, private _router: Router) {}
 
-  public get(url: string, observe?, responseType?) {
+  public get(url: string, baseUrl = this._baseUrl, observe?, responseType?) {
     const accessToken = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Content-type': 'application/json',
@@ -23,7 +23,7 @@ export class ApiService {
     if (responseType === 'text') {
       params['responseType'] = 'text';
     }
-    return this._httpClient.get(this._baseUrl + url, params);
+    return this._httpClient.get(baseUrl + url, params);
   }
 
   public post(url: string, body: object, observe?, responseType?) {
@@ -60,6 +60,22 @@ export class ApiService {
     }
 
     return this._httpClient.post(this._baseUrl + url, formData, params);
+  }
+
+  public patchFormData(url: string, baseUrl = this._baseUrl, formData: FormData, observe?, responseType?) {
+    const accessToken = localStorage.getItem('token') || '';
+    const headers = new HttpHeaders({
+      Authorization: accessToken
+    });
+    const params = { headers };
+    if (observe === 'response') {
+      params['observe'] = 'response';
+    }
+    if (responseType === 'text') {
+      params['responseType'] = 'text';
+    }
+
+    return this._httpClient.patch(baseUrl + url, formData, params);
   }
 
   //   public put(url: string, body: object, observe?, responseType?) {

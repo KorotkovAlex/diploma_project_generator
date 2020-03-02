@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,12 @@ export class AuthComponent implements OnInit {
   isShowError = false;
   authForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.authForm = this.fb.group({
@@ -22,13 +28,11 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Your form data : ', this.authForm.value);
-
     this.authService.signIn({ body: this.authForm.value }).subscribe((val: any) => {
-      console.log('val', val);
-      localStorage.setItem('token', val.data.accessToken);
+      if (val.data.accessToken) {
+        localStorage.setItem('token', val.data.accessToken);
+        this.router.navigate(['/admin']);
+      }
     });
-
-    this.isShowError = true;
   }
 }
