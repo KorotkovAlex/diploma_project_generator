@@ -8,6 +8,8 @@ export interface ConfigType {
   DB_PORT: number;
   DB_USER: string;
   DB_PASSWORD: string;
+  REDIS_HOST: string;
+  REDIS_PORT: number;
 }
 
 export class ConfigService {
