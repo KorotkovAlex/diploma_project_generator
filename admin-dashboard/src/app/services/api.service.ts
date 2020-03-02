@@ -49,7 +49,7 @@ export class ApiService {
   public postFormData(url: string, formData: FormData, observe?, responseType?) {
     const accessToken = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
-      Authorization: accessToken
+      Authorization: `Bearer ${accessToken}`
     });
     const params = { headers };
     if (observe === 'response') {

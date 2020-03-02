@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-new-project',
@@ -11,18 +12,20 @@ export class NewProjectComponent implements OnInit {
   isShowError = false;
   newProjectForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {}
+  constructor(private http: HttpClient, private fb: FormBuilder, private projectsService: ProjectsService) {}
 
   ngOnInit() {
     this.newProjectForm = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       version: ['', Validators.required],
-      typeMenu: [0]
+      typeMenu: ['Bottom Menu']
     });
   }
 
   onSubmit() {
-    console.log('Your form data : ', this.newProjectForm.value);
+    this.projectsService.createNewProject({ project: this.newProjectForm.value }).subscribe(result => {
+      console.log('resilt', result);
+    });
     this.isShowError = true;
   }
 }

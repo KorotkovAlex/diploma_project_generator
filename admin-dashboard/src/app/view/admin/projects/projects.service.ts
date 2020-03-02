@@ -27,4 +27,8 @@ export class ProjectsService {
   public editCompanyDescription({ project, baseUrl, formData }) {
     return this.apiService.patchFormData(`descriptions/${project.id}`, `http://${baseUrl}/`, formData);
   }
+
+  public createNewProject({ project }) {
+    return this.apiService.postFormData('projects', project);
+  }
 }
