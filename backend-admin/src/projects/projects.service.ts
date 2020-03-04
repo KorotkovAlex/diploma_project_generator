@@ -21,9 +21,8 @@ export class ProjectsService extends TypeOrmCrudService<Project> {
     return this.projectRepository.find();
   }
 
-  public async createProject() {
+  public async createProject({ project }) {
     console.log('createProject');
-    const project = new Project();
 
     const job = this.projectQueue
       .add({

@@ -39,7 +39,7 @@ export class ProjectsController {
   @UseGuards(AuthGuard('jwt'))
   @Post('/')
   createOne(@Request() req: any, @Body() dto: Project) {
-    this.service.createProject();
+    this.service.createProject({ project: dto });
     console.log('currentUser', req.user);
     console.log('currentUser', dto);
 
