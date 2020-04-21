@@ -7,14 +7,13 @@
 //   }
 // }
 
-{
-  "theme": {
-    "primaryColor": "#FAF",
-    "secondColor": "#EEE555"
-  },
-  "screens": [
-    { "name": "Contacts" },
-    { "name": "About" },
-    { "name": "Services" }
-  ]
-}
+// {
+//   "theme": {
+//     "primaryColor": "#FAF",
+//     "secondColor": "#EEE555"
+//   },
+//   "screens": [
+//     { "name": "Contacts" },
+//     { "name": "About" }
+//   ]
+// }

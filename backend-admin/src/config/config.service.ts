@@ -10,6 +10,9 @@ export interface ConfigType {
   DB_PASSWORD: string;
   REDIS_HOST: string;
   REDIS_PORT: number;
+  AWS_S3_BUCKET_NAME: string;
+  AWS_ACCESS_KEY_ID: string;
+  AWS_SECRET_ACCESS_KEY: string;
 }
 
 export class ConfigService {
