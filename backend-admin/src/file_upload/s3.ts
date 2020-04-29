@@ -1,4 +1,4 @@
-import * as generate from 'nanoid/generate';
+import { customAlphabet } from 'nanoid';
 
 export const generateS3Id = () => {
   const alphabet =
@@ -6,5 +6,7 @@ export const generateS3Id = () => {
     'abcdefghijklmnopqrstuvwxyz' +
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-  return generate(alphabet, 10);
+  const nanoid = customAlphabet(alphabet, 10);
+
+  return nanoid();
 };
