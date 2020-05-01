@@ -19,16 +19,24 @@ export class NewProjectComponent implements OnInit {
     this.newProjectForm = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       version: ['', Validators.required],
-      typeMenu: ['Bottom Menu']
+      appPatternId: ['']
     });
 
     this.fetchAppPatterns();
   }
 
   onSubmit() {
-    this.projectsService.createNewProject({ project: this.newProjectForm.value }).subscribe(result => {
-      console.log('resilt', result);
-    });
+    this.projectsService
+      .createNewProject({
+        project: {
+          name: this.newProjectForm.value.name,
+          version: this.newProjectForm.value.version,
+          appPattern: this.appPatterns[this.newProjectForm.value.appPatternId]
+        }
+      })
+      .subscribe(result => {
+        console.log('resilt', result);
+      });
     this.isShowError = true;
   }
 
