@@ -15,7 +15,7 @@ export class Project {
   @Column({ length: 100, unique: true })
   name: string;
 
-  @Column({ unique: true })
+  @Column()
   version: number;
 
   @Column({ name: 'backend-api', length: 100, nullable: true })
