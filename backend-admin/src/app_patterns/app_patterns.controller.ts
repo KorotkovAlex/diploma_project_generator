@@ -16,7 +16,7 @@ import { AppPatternsService } from './app_patterns.service';
     },
   },
 })
-@Controller('projects')
+@Controller('app_patterns')
 export class AppPatternsController {
   constructor(public service: AppPatternsService) {}
 
