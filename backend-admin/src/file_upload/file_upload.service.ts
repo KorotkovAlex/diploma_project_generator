@@ -14,11 +14,6 @@ import {
 
 import * as path from 'path';
 import * as os from 'os';
-import { readFileSync } from 'fs';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Project } from '../projects/project.entity';
-import { Repository } from 'typeorm';
-import { User } from '../users/user.entity';
 
 const configService = new ConfigService();
 const config = configService.getConfig();
@@ -35,15 +30,6 @@ const s3 = new AWS.S3({
 @Injectable()
 export class FileUploadService {
   folderName = 'gen-mob-app';
-  constructor(
-    @InjectRepository(Project)
-    private readonly projectRepository: Repository<Project>,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-    @InjectRepository(File)
-    private readonly fileRepository: Repository<File>,
-  ) {}
-
   async unZipFile({ fileName }) {
     const destPath = path.join(os.tmpdir(), this.folderName, fileName);
 
@@ -92,7 +78,7 @@ export class FileUploadService {
       return null;
     }
 
-    const objects = list.Contents.map((Content) => ({ Key: Content.Key }));
+    const objects = list.Contents.map(Content => ({ Key: Content.Key }));
 
     const paramsForDeleting = {
       Bucket: AWS_S3_BUCKET_NAME,

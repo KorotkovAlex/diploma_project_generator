@@ -12,12 +12,16 @@ import { ProjectsModule } from './projects/projects.module';
 import { Project } from './projects/project.entity';
 import { AppPattern } from './app_patterns/app_patterns.entity';
 import { AppPatternsModule } from './app_patterns/app_patterns.module';
+import { Files } from './files/files.entity';
+import { FilesModule } from './files/files.module';
+import { FileUploadService } from './file_upload/file_upload.service';
+import { FileUploadController } from './file_upload/file_upload.controller';
 
 function DatabaseOrmModule(): DynamicModule {
   const configService = new ConfigService();
   const config = configService.getConfig();
   const isProd = configService.isProd();
-  const entities = [User, Project, AppPattern];
+  const entities = [User, Project, Files, AppPattern];
 
   return TypeOrmModule.forRoot({
     type: 'postgres',
@@ -42,8 +46,9 @@ function DatabaseOrmModule(): DynamicModule {
     ConfigModule,
     AuthModule,
     AppPatternsModule,
+    FilesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, FileUploadController],
+  providers: [AppService, FileUploadService],
 })
 export class AppModule {}
