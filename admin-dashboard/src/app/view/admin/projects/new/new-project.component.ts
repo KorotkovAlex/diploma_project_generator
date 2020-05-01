@@ -11,6 +11,7 @@ import { ProjectsService } from '../projects.service';
 export class NewProjectComponent implements OnInit {
   isShowError = false;
   newProjectForm: FormGroup;
+  appPatterns;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private projectsService: ProjectsService) {}
 
@@ -20,6 +21,8 @@ export class NewProjectComponent implements OnInit {
       version: ['', Validators.required],
       typeMenu: ['Bottom Menu']
     });
+
+    this.fetchAppPatterns();
   }
 
   onSubmit() {
@@ -27,5 +30,11 @@ export class NewProjectComponent implements OnInit {
       console.log('resilt', result);
     });
     this.isShowError = true;
+  }
+
+  fetchAppPatterns() {
+    this.projectsService.fetchAppPatterns().subscribe(result => {
+      this.appPatterns = result;
+    });
   }
 }

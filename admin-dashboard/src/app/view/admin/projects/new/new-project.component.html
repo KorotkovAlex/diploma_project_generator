@@ -18,8 +18,9 @@
     <div class="form-group">
       <label for="typeMenu">typeMenu</label>
       <select formControlName="typeMenu" class="form-control form-control-lg" id="typeMenu">
-        <option>Side Menu</option>
-        <option>Bottom Menu</option>
+        <option *ngFor="let appPattern of appPatterns; let i = index">
+          {{ appPattern.name }}
+        </option>
       </select>
     </div>
 

@@ -31,4 +31,8 @@ export class ProjectsService {
   public createNewProject({ project }) {
     return this.apiService.postFormData('projects', project);
   }
+
+  public fetchAppPatterns() {
+    return this.apiService.get('app_patterns');
+  }
 }
