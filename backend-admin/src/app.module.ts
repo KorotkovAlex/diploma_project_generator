@@ -10,12 +10,14 @@ import { ConfigService } from './config/config.service';
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { Project } from './projects/project.entity';
+import { AppPattern } from './app_patterns/app_patterns.entity';
+import { AppPatternsModule } from './app_patterns/app_patterns.module';
 
 function DatabaseOrmModule(): DynamicModule {
   const configService = new ConfigService();
   const config = configService.getConfig();
   const isProd = configService.isProd();
-  const entities = [User, Project];
+  const entities = [User, Project, AppPattern];
 
   return TypeOrmModule.forRoot({
     type: 'postgres',
@@ -39,6 +41,7 @@ function DatabaseOrmModule(): DynamicModule {
     ProjectsModule,
     ConfigModule,
     AuthModule,
+    AppPatternsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
