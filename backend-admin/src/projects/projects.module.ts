@@ -7,6 +7,7 @@ import { ProjectsController } from './projects.controller';
 import { ConfigService } from 'src/config/config.service';
 import { BullModule } from '@nestjs/bull';
 import { ProjectsConsumer } from './projects.consumer';
+import { Files } from '../files/files.entity';
 
 const BullModuleWithConfig = () => {
   const config = new ConfigService().getConfig();
@@ -20,7 +21,7 @@ const BullModuleWithConfig = () => {
 };
 
 @Module({
-  imports: [BullModuleWithConfig(), TypeOrmModule.forFeature([Project])],
+  imports: [BullModuleWithConfig(), TypeOrmModule.forFeature([Project, Files])],
   providers: [ProjectsService, ProjectsConsumer],
   exports: [ProjectsService],
   controllers: [ProjectsController],

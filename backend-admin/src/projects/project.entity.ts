@@ -5,9 +5,12 @@ import {
   ManyToMany,
   JoinTable,
   ManyToOne,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { AppPattern } from 'src/app_patterns/app_patterns.entity';
+import { Files } from 'src/files/files.entity';
 
 @Entity('projects')
 export class Project {
@@ -32,4 +35,8 @@ export class Project {
     appPattern => appPattern.projects,
   )
   appPattern: AppPattern;
+
+  @OneToOne(type => Files, { nullable: true })
+  @JoinColumn({ name: 'file_id' })
+  projectPath: Files;
 }

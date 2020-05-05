@@ -6,6 +6,7 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Project } from './project.entity';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class ProjectsService extends TypeOrmCrudService<Project> {
@@ -17,13 +18,11 @@ export class ProjectsService extends TypeOrmCrudService<Project> {
     super(projectRepository);
   }
 
-  public async findAll(): Promise<Project[]> {
+  public findAll(): Promise<Project[]> {
     return this.projectRepository.find();
   }
 
-  public async createProject({ project }) {
-    console.log('createProject');
-
+  public createProject({ project }) {
     const job = this.projectQueue
       .add({
         project,
@@ -32,7 +31,19 @@ export class ProjectsService extends TypeOrmCrudService<Project> {
         console.log('error', error);
       });
 
-    console.log('job', job);
+    return job;
+  }
+
+  public async generateProject(params: {
+    project: Project;
+    currentUser: User;
+  }) {
+    const job = this.projectQueue
+      .add('generate', { project: params.project, user: params.currentUser })
+      .catch(error => {
+        console.log('error', error);
+      });
+
     return job;
   }
 }

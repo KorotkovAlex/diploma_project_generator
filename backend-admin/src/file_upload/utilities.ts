@@ -2,10 +2,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as util from 'util';
 import intoStream from 'into-stream';
+import * as copydir from 'copy-dir';
 
 const promisify = util.promisify;
 const rmdirPromise = promisify(fs.rmdir);
 const mkdirPromise = promisify(fs.mkdir);
+
 const readdirPromise = promisify(fs.readdir);
 const statPromise = promisify(fs.stat);
 const unlinkPromise = promisify(fs.unlink);
@@ -83,4 +85,8 @@ export const writeStreamToFile = (stream: any, dest: string): Promise<any> =>
 
 export const getStreamFromBuffer = async (buffer: Buffer): Promise<any> => {
   return intoStream(buffer);
+};
+
+export const copyFolder = async (from, to, callback) => {
+  copydir(from, to, callback);
 };

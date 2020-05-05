@@ -53,12 +53,12 @@ export class FileUploadService {
     return { fullPath, folderName };
   }
 
-  async uploadFileToServe({ image, dirPath }) {
+  async uploadFileToServe({ file }) {
     const params = {
       ACL: 'public-read',
       Bucket: AWS_S3_BUCKET_NAME,
-      Key: `${dirPath}/${image.originalname}.zip`,
-      Body: image.buffer,
+      Key: `${file.name}`,
+      Body: file.buffer,
     };
 
     const res = await s3.putObject(params).promise();
