@@ -76,21 +76,7 @@ function DatabaseOrmModule(): DynamicModule {
     ServicesCompaniesModule,
     RegistretionsForServicesModule,
   ],
-  controllers: [
-    AppController,
-    FileUploadController,
-    AboutCompaniesController,
-    ContactsCompaniesController,
-    ServicesCompaniesController,
-    RegistretionsForServicesController,
-  ],
-  providers: [
-    AppService,
-    FileUploadService,
-    AboutCompaniesService,
-    ContactsCompaniesService,
-    ServicesCompaniesService,
-    RegistretionsForServicesService,
-  ],
+  controllers: [AppController, FileUploadController],
+  providers: [AppService, FileUploadService],
 })
 export class AppModule {}
