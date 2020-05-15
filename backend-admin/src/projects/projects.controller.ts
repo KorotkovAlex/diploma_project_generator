@@ -23,6 +23,9 @@ import { User } from '../users/user.entity';
       users: {
         eager: true,
       },
+      projectPath: {
+        eager: true,
+      },
     },
   },
 })

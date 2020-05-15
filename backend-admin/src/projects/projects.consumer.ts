@@ -44,7 +44,7 @@ export class ProjectsConsumer {
 
             const path = await fileUploadService.uploadFileToServe({
               file: {
-                name: folderName,
+                name: `${folderName}.zip`,
                 buffer: data,
               },
             });
