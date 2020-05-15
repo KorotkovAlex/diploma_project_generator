@@ -31,6 +31,14 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  generateProject() {
+    console.log('generate project');
+
+    this.projectsService.generateProject(this.project).subscribe(result => {
+      console.log('test', result);
+    });
+  }
+
   _fetchInfoAbout() {
     this.projectsService.getInfoAbout({ baseUrl: this.project.backendApi }).subscribe(result => {
       // this.project = result;

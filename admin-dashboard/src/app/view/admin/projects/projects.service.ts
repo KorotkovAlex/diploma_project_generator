@@ -35,4 +35,8 @@ export class ProjectsService {
   public fetchAppPatterns() {
     return this.apiService.get('app_patterns');
   }
+
+  public generateProject(project) {
+    return this.apiService.post('projects/generate', project);
+  }
 }

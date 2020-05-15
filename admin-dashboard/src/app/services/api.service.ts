@@ -31,7 +31,7 @@ export class ApiService {
     console.log('accessToken', accessToken);
     const headers = new HttpHeaders({
       'Content-type': 'application/json',
-      Authorization: accessToken
+      Authorization: `Bearer ${accessToken}`
     });
     const params = { headers };
     if (observe === 'response') {
