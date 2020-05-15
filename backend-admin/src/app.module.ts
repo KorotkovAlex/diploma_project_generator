@@ -16,12 +16,36 @@ import { Files } from './files/files.entity';
 import { FilesModule } from './files/files.module';
 import { FileUploadService } from './file_upload/file_upload.service';
 import { FileUploadController } from './file_upload/file_upload.controller';
-
+import { AboutCompaniesService } from './about-companies/about-companies.service';
+import { AboutCompaniesController } from './about-companies/about-companies.controller';
+import { AboutCompaniesModule } from './about-companies/about-companies.module';
+import { ContactsCompaniesService } from './contacts-companies/contacts-companies.service';
+import { ContactsCompaniesController } from './contacts-companies/contacts-companies.controller';
+import { ContactsCompaniesModule } from './contacts-companies/contacts-companies.module';
+import { ServicesCompaniesService } from './services-companies/services-companies.service';
+import { ServicesCompaniesController } from './services-companies/services-companies.controller';
+import { ServicesCompaniesModule } from './services-companies/services-companies.module';
+import { RegistretionsForServicesService } from './registretions-for-services/registretions-for-services.service';
+import { RegistretionsForServicesController } from './registretions-for-services/registretions-for-services.controller';
+import { RegistretionsForServicesModule } from './registretions-for-services/registretions-for-services.module';
+import { AboutCompany } from './about-companies/about-company.entity';
+import { ContactCompany } from './contacts-companies/contacts-company.entity';
+import { RegistretionForService } from './registretions-for-services/registretions-for-services.entity';
+import { ServicesCompany } from './services-companies/services-company.entity';
 function DatabaseOrmModule(): DynamicModule {
   const configService = new ConfigService();
   const config = configService.getConfig();
   const isProd = configService.isProd();
-  const entities = [User, Project, Files, AppPattern];
+  const entities = [
+    User,
+    Project,
+    Files,
+    AppPattern,
+    AboutCompany,
+    ContactCompany,
+    RegistretionForService,
+    ServicesCompany,
+  ];
 
   return TypeOrmModule.forRoot({
     type: 'postgres',
@@ -47,8 +71,26 @@ function DatabaseOrmModule(): DynamicModule {
     AuthModule,
     AppPatternsModule,
     FilesModule,
+    AboutCompaniesModule,
+    ContactsCompaniesModule,
+    ServicesCompaniesModule,
+    RegistretionsForServicesModule,
   ],
-  controllers: [AppController, FileUploadController],
-  providers: [AppService, FileUploadService],
+  controllers: [
+    AppController,
+    FileUploadController,
+    AboutCompaniesController,
+    ContactsCompaniesController,
+    ServicesCompaniesController,
+    RegistretionsForServicesController,
+  ],
+  providers: [
+    AppService,
+    FileUploadService,
+    AboutCompaniesService,
+    ContactsCompaniesService,
+    ServicesCompaniesService,
+    RegistretionsForServicesService,
+  ],
 })
 export class AppModule {}

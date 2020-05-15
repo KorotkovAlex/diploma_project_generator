@@ -6,9 +6,11 @@ import {
   BeforeInsert,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Project } from '../projects/project.entity';
+import { RegistretionForService } from '../registretions-for-services/registretions-for-services.entity';
 
 @Entity('users')
 export class User {
@@ -41,6 +43,12 @@ export class User {
 
   @Column({ length: 100, nullable: true })
   gender: string;
+
+  @OneToMany(
+    type => RegistretionForService,
+    registretionForService => registretionForService.user,
+  )
+  registrations: RegistretionForService[];
 
   @BeforeInsert()
   async hashPassword() {
