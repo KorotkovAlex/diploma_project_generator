@@ -9,10 +9,10 @@ async function bootstrap() {
   app.enableCors();
 
   const options = new DocumentBuilder()
-    .setTitle('Deck of Words')
-    .setDescription('Deck of Words Api')
+    .setTitle('GenMobApi')
+    .setDescription('Api of the GenMob project')
     .setVersion('1.0')
-    .addTag('deck')
+    .addTag('GenMobApi')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);

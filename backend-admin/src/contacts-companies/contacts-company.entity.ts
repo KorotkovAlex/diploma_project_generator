@@ -9,5 +9,5 @@ export class ContactCompany {
   name: string;
 
   @Column({ nullable: true })
-  price: string;
+  place: string;
 }

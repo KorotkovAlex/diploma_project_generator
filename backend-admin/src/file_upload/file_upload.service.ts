@@ -105,4 +105,85 @@ export class FileUploadService {
   async generateMobileApp({ user, project }) {
     // this.saveFileToLocalStorage({})
   }
+
+  async saveFileToLocalStorage2({ file }) {
+    const stream = await getStreamFromBuffer(file.buffer);
+    const folderName = generateS3Id();
+
+    const destPath = path.join(os.tmpdir(), 'idk', folderName);
+    await mkdirIfNotExist(destPath);
+
+    const fullPath = `${destPath}/original.jpg`;
+    await writeStreamToFile(stream, fullPath);
+
+    return { fullPath, folderName };
+  }
+
+  async uploadFileToServe2({ image, dirPath }) {
+    const params = {
+      ACL: 'public-read',
+      Bucket: AWS_S3_BUCKET_NAME,
+      Key: `${dirPath}/${image.originalname}.jpg`,
+      Body: image.buffer,
+    };
+
+    const res = await s3.putObject(params).promise();
+
+    return res;
+  }
+
+  async fileupload({ images }) {
+    const putPromises = [];
+    const generatedPathName = generateS3Id();
+
+    images.forEach(image => {
+      putPromises.push(
+        this.uploadFileToServe2({ image, dirPath: generatedPathName }),
+      );
+    });
+
+    return path;
+  }
+
+  async fileuploadByImagePath({ source, pathName }) {
+    const putPromises = [];
+    const generatedPathName = pathName;
+
+    Object.keys(source.filePaths).forEach(key => {
+      const imageBuffer = fs.readFileSync(source.filePaths[key]);
+
+      putPromises.push(
+        this.uploadFileToServe2({
+          image: { buffer: imageBuffer, originalname: key },
+          dirPath: generatedPathName,
+        }),
+      );
+    });
+
+    return await Promise.all(putPromises);
+  }
+
+  // async deleteFile({ namePath }) {
+  //   const params = {
+  //     Bucket: AWS_S3_BUCKET_NAME,
+  //     Prefix: `${namePath}`,
+  //   };
+
+  //   const list = await s3.listObjects(params).promise();
+
+  //   if (list.Contents.length === 0) {
+  //     return null;
+  //   }
+
+  //   const objects = list.Contents.map(Content => ({ Key: Content.Key }));
+
+  //   const paramsForDeleting = {
+  //     Bucket: AWS_S3_BUCKET_NAME,
+  //     Delete: { Objects: objects },
+  //   };
+
+  //   const res = await s3.deleteObjects(paramsForDeleting).promise();
+
+  //   return res;
+  // }
 }
