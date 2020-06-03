@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class ApiService {
-  _baseUrl = 'http://localhost:3000/';
+  _baseUrl = 'http://161.35.30.184:3000/';
 
   constructor(private _httpClient: HttpClient, private _router: Router) {}
 
