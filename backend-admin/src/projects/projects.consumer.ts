@@ -1,4 +1,10 @@
-import { Processor, Process, OnQueueActive, OnQueueError } from '@nestjs/bull';
+import {
+  Processor,
+  Process,
+  OnQueueActive,
+  OnQueueError,
+  OnQueueCompleted,
+} from '@nestjs/bull';
 import { exec } from 'child_process';
 import { Job } from 'bull';
 import { zip } from 'zip-a-folder';
@@ -59,17 +65,28 @@ export class ProjectsConsumer {
               ...project,
               projectPath: newFile,
             });
+
+            // const used = process.memoryUsage();
+            // for (let key in used) {
+            //   console.log(
+            //     `${key} ${Math.round((used[key] / 1024 / 1024) * 100) /
+            //       100} MB`,
+            //   );
+            // }
+
+            // console.timeEnd(`time generate ${job.id}`);
+            // console.log('-----------------------------------');
           });
 
           if (error) {
-            console.log(`error: ${error.message}`);
+            // console.log(`error: ${error.message}`);
             // return;
           }
           if (stderr) {
-            console.log(`stderr: ${stderr}`);
+            // console.log(`stderr: ${stderr}`);
             // return;
           }
-          console.log(`stdout: ${stdout}`);
+          // console.log(`stdout: ${stdout}`);
         },
       );
     });
@@ -77,13 +94,25 @@ export class ProjectsConsumer {
 
   @OnQueueActive()
   onActive(job: Job) {
-    console.log(
-      `Processing job ${job.id} of type ${job.name} with data ${job.data}...`,
-    );
+    // const used = process.memoryUsage();
+    // for (let key in used) {
+    //   console.log(
+    //     `${key} ${Math.round((used[key] / 1024 / 1024) * 100) / 100} MB`,
+    //   );
+    // }
+
+    // console.time(`time generate ${job.id}`);
+    // console.log(
+    //   `Processing job ${job.id} of type ${job.name} with data ${job.data}...`,
+    // );
+    // console.log('-----------------------------------');
   }
+
+  // @OnQueueCompleted()
+  // onCompleted(job: Job) {}
 
   @OnQueueError()
   onError(error: Error) {
-    console.log('error', error);
+    // console.log('error', error);
   }
 }

@@ -98,7 +98,7 @@ export class FileUploadController {
   async deleteFile(@Req() req: Request) {
     const { name_path: namePath } = req.query;
 
-    if (!namePath || namePath.trim() === '') {
+    if (!namePath) {
       return {
         status: HttpStatus.BAD_REQUEST,
         message: "Path name can't be empty",

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as util from 'util';
 import intoStream from 'into-stream';
-import * as copydir from 'copy-dir';
+import copydir from 'copy-dir';
 
 const promisify = util.promisify;
 const rmdirPromise = promisify(fs.rmdir);
@@ -51,7 +51,7 @@ export const rmdirIfExist = async (src: string) => {
 };
 
 export const mkdirIfNotExist = async (dir: string) => {
-  const mkdirInsideExistDirIfNotExist = async dir => {
+  const mkdirInsideExistDirIfNotExist = async (dir) => {
     try {
       await mkdirPromise(dir);
     } catch (err) {
@@ -75,7 +75,7 @@ export const writeStreamToFile = (stream: any, dest: string): Promise<any> =>
       .on('end', () => {
         destStream.end();
       })
-      .on('error', err => {
+      .on('error', (err) => {
         reject(err);
         destStream.end();
       })

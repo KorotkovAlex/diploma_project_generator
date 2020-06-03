@@ -5,6 +5,7 @@ import {
   Request,
   Body,
   Get,
+  HttpStatus,
 } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Project } from './project.entity';
@@ -56,6 +57,6 @@ export class ProjectsController {
   ) {
     this.service.generateProject({ project, currentUser });
 
-    return;
+    return { status: HttpStatus.OK };
   }
 }

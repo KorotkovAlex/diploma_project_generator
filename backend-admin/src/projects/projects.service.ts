@@ -7,6 +7,7 @@ import { Project } from './project.entity';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { User } from 'src/users/user.entity';
+import { setQueues } from 'bull-board';
 
 @Injectable()
 export class ProjectsService extends TypeOrmCrudService<Project> {
@@ -16,6 +17,8 @@ export class ProjectsService extends TypeOrmCrudService<Project> {
     private readonly projectRepository: Repository<Project>,
   ) {
     super(projectRepository);
+
+    setQueues([projectQueue]);
   }
 
   public findAll(): Promise<Project[]> {
@@ -27,7 +30,7 @@ export class ProjectsService extends TypeOrmCrudService<Project> {
       .add({
         project,
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('error', error);
       });
 
@@ -40,7 +43,7 @@ export class ProjectsService extends TypeOrmCrudService<Project> {
   }) {
     const job = this.projectQueue
       .add('generate', { project: params.project, user: params.currentUser })
-      .catch(error => {
+      .catch((error) => {
         console.log('error', error);
       });
 
