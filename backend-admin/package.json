@@ -31,7 +31,7 @@
     "@nestjsx/crud": "^4.6.2",
     "@nestjsx/crud-typeorm": "^4.6.2",
     "archiver": "^4.0.1",
-    "aws-sdk": "^2.632.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^4.0.1",
     "bull": "^3.13.0",
     "bull-arena": "^2.8.1",
