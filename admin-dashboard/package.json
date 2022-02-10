@@ -27,7 +27,7 @@
     "core-js": "^3.6.4",
     "font-awesome": "^4.7.0",
     "ng-bootstrap": "^1.6.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.4",
     "tslib": "^1.10.0",
